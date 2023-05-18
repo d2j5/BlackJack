@@ -55,7 +55,7 @@ public class Game {
     }
     //This  method will handle the logic for each round
     private void startRound() {
-
+        bet =0;
 
         if(wins>0 || losses>0 || pushes > 0){
             System.out.println();
@@ -127,33 +127,21 @@ public class Game {
         }
 
         //Check who wins
-        if(dealer.getHand().calculatedValue()>21){
+        if (dealer.getHand().calculatedValue() > 21) {
             System.out.println("Dealer busts");
             wins++;
-            player.setBalance(player.getBalance() + (2 * this.bet)); // Add the winnings to the player's balance
-        }
-        else if(dealer.getHand().calculatedValue() > player.getHand().calculatedValue()){
+            player.setBalance(player.getBalance() + (2 * bet)); // Use 'bet' instead of 'this.bet'
+        } else if (dealer.getHand().calculatedValue() > player.getHand().calculatedValue()) {
             System.out.println("You lose.");
             losses++;
-        }
-        else if(player.getHand().calculatedValue() > dealer.getHand().calculatedValue()){
+        } else if (player.getHand().calculatedValue() > dealer.getHand().calculatedValue()) {
             System.out.println("You win.");
             wins++;
-            player.setBalance(player.getBalance() + (2 * bet)); // Add the winnings to the player's balance
-        }
-        else{
+            player.setBalance(player.getBalance() + (2 * bet)); // Use 'bet' instead of 'this.bet'
+        } else {
             System.out.println("Push.");
             pushes++;
-            player.setBalance(player.getBalance() + bet); // Add the bet back to the player's balance
-        }
-
-        //display the winning player
-        if (wins > losses) {
-            System.out.println("You are currently winning!");
-        } else if (losses > wins) {
-            System.out.println("The dealer is currently winning!");
-        } else {
-            System.out.println("It is currently tied!");
+            player.setBalance(player.getBalance() + bet); // Use 'bet' instead of 'this.bet'
         }
 
         //Start a new round
